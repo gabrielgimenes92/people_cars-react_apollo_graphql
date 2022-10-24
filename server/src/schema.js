@@ -1,5 +1,5 @@
 import { gql } from "apollo-server-express";
-import { find } from "lodash";
+import { find, remove } from "lodash";
 
 const people_data = [
   {
@@ -122,6 +122,8 @@ const typeDefs = gql`
 
     updatePerson(id: String!, firstName: String, lastname: String): Person
 
+    removePerson(id: String!): Person
+
     addCar(
       id: String!
       year: Int
@@ -139,6 +141,8 @@ const typeDefs = gql`
       price: Float
       personId: Int
     ): Car
+
+    removeCar(id: String!): Car
   }
 `;
 
@@ -173,10 +177,25 @@ const resolvers = {
       if (!person) {
         throw new Error(`Couldn't find person with id ${args.id}`);
       }
+
       person.firstName = args.firstName;
       person.lastName = args.lastName;
 
       return person;
+    },
+
+    removePerson: (root, args) => {
+      const removedPerson = find(people_data, { id: args.id });
+
+      if (!removedPerson) {
+        throw new Error(`Couldn't find contact with id ${args.id}`);
+      }
+
+      remove(people_data, (p) => {
+        return p.id === removedPerson.id;
+      });
+
+      return removedPerson;
     },
 
     addCar: (root, args) => {
@@ -200,6 +219,7 @@ const resolvers = {
       if (!car) {
         throw new Error(`Couldn't find person with id ${args.id}`);
       }
+
       car.year = args.year;
       car.make = args.make;
       car.model = args.model;
@@ -207,6 +227,20 @@ const resolvers = {
       car.personId = args.personId;
 
       return car;
+    },
+
+    removeCar: (root, args) => {
+      const removedCar = find(cars_data, { id: args.id });
+
+      if (!removedCar) {
+        throw new Error(`Couldn't find contact with id ${args.id}`);
+      }
+
+      remove(cars_data, (c) => {
+        return c.id === removedCar.id;
+      });
+
+      return removedCar;
     },
   },
 };
