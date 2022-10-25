@@ -3,8 +3,6 @@ import { Card } from "antd";
 const getStyles = () => ({
   card: {
     minWidth: "300px",
-    /* padding: '15px',
-    marginBottom: '50px' */
   },
 });
 
