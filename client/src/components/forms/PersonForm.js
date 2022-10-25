@@ -23,7 +23,7 @@ const PersonForm = () => {
     <Form
       form={form}
       name="add-contact-form"
-      layout="inline"
+      layout="vertical"
       onFinish={onFinish}
       size="large"
       style={{ marginBottom: "40px" }}

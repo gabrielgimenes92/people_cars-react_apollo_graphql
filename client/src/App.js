@@ -1,9 +1,12 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
+import { Row, Col } from "antd";
 import "./App.css";
 
+import Header from "./components/layout/Header";
 import CarForm from "./components/forms/CarForm";
+import PersonForm from "./components/forms/PersonForm";
 import CarsList from "./components/lists/CarsList";
+import PeopleList from "./components/lists/PeopleList";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -14,9 +17,16 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <h1>Title 123</h1>
-        <CarForm />
-        <CarsList />
+        <Header />
+        <div className="forms">
+          <PersonForm />
+          <CarForm />
+        </div>
+
+        <div className="lists">
+          <PeopleList />
+          <CarsList />
+        </div>
       </div>
     </ApolloProvider>
   );
