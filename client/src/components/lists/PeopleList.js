@@ -1,7 +1,7 @@
 import React from "react";
 
-const Show = () => {
+const PeopleList = () => {
   return <div></div>;
 };
 
-export default Show;
+export default PeopleList;
