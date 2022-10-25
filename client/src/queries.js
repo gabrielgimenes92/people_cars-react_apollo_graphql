@@ -39,3 +39,13 @@ export const ADD_CAR = gql`
     }
   }
 `;
+
+export const GET_PEOPLE = gql`
+  {
+    people {
+      id
+      firstName
+      lastName
+    }
+  }
+`;
