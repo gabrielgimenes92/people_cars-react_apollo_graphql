@@ -18,10 +18,9 @@ const App = () => {
     <ApolloProvider client={client}>
       <div className="App">
         <Header />
-        <div className="forms">
-          <PersonForm />
-          <CarForm />
-        </div>
+
+        <PersonForm />
+        <CarForm />
 
         <div className="lists">
           <PeopleList />

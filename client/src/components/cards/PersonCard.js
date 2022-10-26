@@ -1,6 +1,8 @@
+import { EditOutlined } from "@ant-design/icons";
 import { Card } from "antd";
-import { useQuery } from "@apollo/client";
-import { GET_CAR } from "../../queries";
+import { useState } from "react";
+import RemovePerson from "../buttons/RemovePerson";
+import UpdatePerson from "../forms/UpdatePerson";
 
 const getStyles = () => ({
   card: {
@@ -9,18 +11,41 @@ const getStyles = () => ({
 });
 
 const PersonCard = (props) => {
-  /*   const { loading, error, data } = useQuery(GET_CAR);
-  if (loading) return "loading...";
-  if (error) return `Error ${error.message}`; */
-
   const { id, firstName, lastName } = props;
   const styles = getStyles();
+
+  const [editMode, setEditMode] = useState(false);
+
+  const handleButtonClick = () => {
+    setEditMode(!editMode);
+  };
+
   return (
-    <Card bordered={false} style={styles.card}>
-      <h3>
-        {firstName} {lastName}
-      </h3>
-    </Card>
+    <>
+      {editMode ? (
+        <UpdatePerson
+          id={id}
+          firstName={firstName}
+          lastName={lastName}
+          onButtonClick={handleButtonClick}
+        />
+      ) : (
+        <Card
+          bordered={false}
+          style={styles.card}
+          actions={[
+            <EditOutlined key="edit" onClick={handleButtonClick} />,
+            <RemovePerson
+              id={id} /* firstName={firstName} lastName={lastName} */
+            />,
+          ]}
+        >
+          <h3>
+            {firstName} {lastName}
+          </h3>
+        </Card>
+      )}
+    </>
   );
 };
 

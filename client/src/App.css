@@ -31,19 +31,6 @@
   color: #61dafb;
 }
 
-.forms{
-  margin-top: 4rem;
-  gap: 3rem;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-}
-
-.forms > * {
-  flex: 1 0 50%;
-  align-self: flex-end;
-}
-
 .lists{
   gap: 3rem;
   display: flex;

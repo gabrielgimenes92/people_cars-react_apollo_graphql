@@ -4,7 +4,18 @@ import { useState, useEffect } from "react";
 import { ADD_CAR, GET_PEOPLE } from "../../queries";
 import { v4 as uuidv4 } from "uuid";
 
+const getStyles = () => ({
+  item: {
+    width: "120px",
+    marginRight: "120px",
+  },
+  input: {
+    width: "150px",
+  },
+});
+
 const CarForm = () => {
+  const styles = getStyles();
   const [id] = useState(uuidv4());
   const [addCar] = useMutation(ADD_CAR);
   const [listOwners, setListOwners] = useState();
@@ -25,71 +36,87 @@ const CarForm = () => {
   if (error) return `Error ${error.message}`;
 
   return (
-    <Form
-      form={form}
-      name="add-car-form"
-      onFinish={onFinish}
-      size="large"
-      style={{ marginBottom: "40px" }}
-    >
-      <Form.Item
-        label="Model year"
-        name="year"
-        rules={[
-          { requred: true, message: "Please input the vehicle's model year" },
-        ]}
+    <>
+      <h2 style={{ fontSize: "1.5rem" }}>Add Car Form</h2>
+      <Form
+        style={{
+          display: "flex",
+          flex: "row nowrap",
+          justifyContent: "space-around",
+          marginTop: "10px",
+          marginBottom: "40px",
+        }}
+        form={form}
+        name="add-car-form"
+        onFinish={onFinish}
+        size="large"
       >
-        <Input placeholder="Year" />
-      </Form.Item>
-      <Form.Item
-        label="Make"
-        name="make"
-        rules={[{ requred: true, message: "Please input the vehicle make" }]}
-      >
-        <Input placeholder="Make" />
-      </Form.Item>
-      <Form.Item
-        label="Model"
-        name="model"
-        rules={[{ requred: true, message: "Please input the vehicle model" }]}
-      >
-        <Input placeholder="Model" />
-      </Form.Item>
-      <Form.Item
-        label="Price"
-        name="price"
-        rules={[{ requred: true, message: "Please input the vehicle price" }]}
-      >
-        <Input placeholder="Price" />
-      </Form.Item>
-      <Form.Item
-        label="Owner"
-        name="personId"
-        rules={[{ requred: true, message: "Please input the owner's ID" }]}
-      >
-        <Select>
-          {data.people.map(({ id, firstName, lastName }) => (
-            <Select.Option key={id} value={firstName}>
-              {firstName} {lastName}
-            </Select.Option>
-          ))}
-        </Select>
-      </Form.Item>
-      <Form.Item shouldUpdate={true}>
-        {() => (
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={
-              !form.isFieldsTouched(true) ||
-              form.getFieldsError().filter(({ errors }) => errors.length).length
-            }
-          >
-            Add Car
-          </Button>
-        )}
-      </Form.Item>
-    </Form>
+        <Form.Item
+          style={styles.item}
+          label="Model year"
+          name="year"
+          rules={[
+            { requred: true, message: "Please input the vehicle's model year" },
+          ]}
+        >
+          <Input style={styles.input} placeholder="Year" />
+        </Form.Item>
+        <Form.Item
+          style={styles.item}
+          label="Make"
+          name="make"
+          rules={[{ requred: true, message: "Please input the vehicle make" }]}
+        >
+          <Input style={styles.input} placeholder="Make" />
+        </Form.Item>
+        <Form.Item
+          style={styles.item}
+          label="Model"
+          name="model"
+          rules={[{ requred: true, message: "Please input the vehicle model" }]}
+        >
+          <Input style={styles.input} placeholder="Model" />
+        </Form.Item>
+        <Form.Item
+          style={styles.item}
+          label="Price"
+          name="price"
+          rules={[{ requred: true, message: "Please input the vehicle price" }]}
+        >
+          <Input style={styles.input} placeholder="Price" />
+        </Form.Item>
+        <Form.Item
+          style={styles.item}
+          label="Owner"
+          name="personId"
+          rules={[{ requred: true, message: "Please input the owner's ID" }]}
+        >
+          <Select style={styles.input}>
+            {data.people.map(({ id, firstName, lastName }) => (
+              <Select.Option key={id} value={firstName}>
+                {firstName} {lastName}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item shouldUpdate={true} style={styles.item}>
+          {() => (
+            <Button
+              style={{ width: "150px" }}
+              type="primary"
+              htmlType="submit"
+              disabled={
+                !form.isFieldsTouched(true) ||
+                form.getFieldsError().filter(({ errors }) => errors.length)
+                  .length
+              }
+            >
+              Add Car
+            </Button>
+          )}
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 

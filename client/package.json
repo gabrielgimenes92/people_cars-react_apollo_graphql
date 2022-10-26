@@ -5,6 +5,7 @@
     "antd": "^4.23.6",
     "cra-template": "1.2.0",
     "graphql": "^16.6.0",
+    "lodash.filter": "^4.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-routes": "^0.2.6",
