@@ -26,7 +26,7 @@ const cars_data = [
     make: "Toyota",
     model: "Corolla",
     price: "40000",
-    personId: 1,
+    personId: "1",
   },
   {
     id: "2",
@@ -34,7 +34,7 @@ const cars_data = [
     make: "Lexus",
     model: "LX 600",
     price: "13000",
-    personId: 1,
+    personId: "1",
   },
   {
     id: "3",
@@ -42,7 +42,7 @@ const cars_data = [
     make: "Honda",
     model: "Civic",
     price: "20000",
-    personId: 1,
+    personId: "1",
   },
   {
     id: "4",
@@ -50,7 +50,7 @@ const cars_data = [
     make: "Acura ",
     model: "MDX",
     price: "60000",
-    personId: 2,
+    personId: "2",
   },
   {
     id: "5",
@@ -58,7 +58,7 @@ const cars_data = [
     make: "Ford",
     model: "Focus",
     price: "35000",
-    personId: 2,
+    personId: "2",
   },
   {
     id: "6",
@@ -66,7 +66,7 @@ const cars_data = [
     make: "Honda",
     model: "Pilot",
     price: "45000",
-    personId: 2,
+    personId: "2",
   },
   {
     id: "7",
@@ -74,7 +74,7 @@ const cars_data = [
     make: "Volkswagen",
     model: "Golf",
     price: "40000",
-    personId: 3,
+    personId: "3",
   },
   {
     id: "8",
@@ -82,7 +82,7 @@ const cars_data = [
     make: "Kia",
     model: "Sorento",
     price: "45000",
-    personId: 3,
+    personId: "3",
   },
   {
     id: "9",
@@ -90,7 +90,7 @@ const cars_data = [
     make: "Volvo",
     model: "XC40",
     price: "55000",
-    personId: 3,
+    personId: "3",
   },
 ];
 
@@ -103,10 +103,10 @@ const typeDefs = gql`
 
   type Car {
     id: String!
-    year: Int
+    year: String
     make: String
     model: String
-    price: Float
+    price: String
     personId: String
   }
 
@@ -127,19 +127,19 @@ const typeDefs = gql`
 
     addCar(
       id: String!
-      year: Int
+      year: String
       make: String
       model: String
-      price: Float
+      price: String
       personId: String
     ): Car
 
     updateCar(
       id: String!
-      year: Int
+      year: String
       make: String
       model: String
-      price: Float
+      price: String
       personId: String
     ): Car
 

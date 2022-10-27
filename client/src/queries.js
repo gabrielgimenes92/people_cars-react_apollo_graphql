@@ -29,11 +29,11 @@ export const GET_CARS_BY_PERSONID = gql`
 export const ADD_CAR = gql`
   mutation AddCar(
     $id: String!
-    $year: Int
+    $year: String
     $make: String
     $model: String
-    $price: Float
-    $personId: Int
+    $price: String
+    $personId: String
   ) {
     addCar(
       id: $id
@@ -69,11 +69,11 @@ export const REMOVE_CAR = gql`
 export const UPDATE_CAR = gql`
   mutation UpdateCar(
     $id: String!
-    $year: Int
+    $year: String
     $make: String
     $model: String
-    $price: Float
-    $personId: Int
+    $price: String
+    $personId: String
   ) {
     updateCar(
       id: $id

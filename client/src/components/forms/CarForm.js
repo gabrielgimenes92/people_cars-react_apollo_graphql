@@ -29,6 +29,8 @@ const CarForm = () => {
 
   const onFinish = (values) => {
     const { year, model, make, price, personId } = values;
+    console.log(values);
+    console.log("**************************");
 
     addCar({
       variables: {
@@ -55,6 +57,7 @@ const CarForm = () => {
   const { loading, error, data } = useQuery(GET_PEOPLE);
   if (loading) return "loading...";
   if (error) return `Error ${error.message}`;
+  let owners = data;
 
   return (
     <>
@@ -110,11 +113,11 @@ const CarForm = () => {
           style={styles.item}
           label="Owner"
           name="personId"
-          rules={[{ requred: true, message: "Please input the owner's ID" }]}
+          rules={[{ requred: true, message: "Please select the owner's ID" }]}
         >
           <Select style={styles.input}>
-            {data.people.map(({ id, firstName, lastName }) => (
-              <Select.Option key={id} value={firstName}>
+            {owners.people.map(({ id, firstName, lastName }) => (
+              <Select.Option key={id} value={id}>
                 {firstName} {lastName}
               </Select.Option>
             ))}
