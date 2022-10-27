@@ -1,5 +1,5 @@
 import { EditOutlined } from "@ant-design/icons";
-import { Card } from "antd";
+import { Card, Divider } from "antd";
 import { useState } from "react";
 import RemovePerson from "../buttons/RemovePerson";
 import UpdatePerson from "../forms/UpdatePerson";
@@ -31,19 +31,22 @@ const PersonCard = (props) => {
           onButtonClick={handleButtonClick}
         />
       ) : (
-        <Card
-          bordered={false}
-          style={styles.card}
-          actions={[
-            <EditOutlined key="edit" onClick={handleButtonClick} />,
-            <RemovePerson id={id} />,
-          ]}
-        >
-          <h3>
-            {firstName} {lastName}
-          </h3>
-          <CarsList personId={id} />
-        </Card>
+        <>
+          <Card
+            bordered={true}
+            style={styles.card}
+            actions={[
+              <EditOutlined key="edit" onClick={handleButtonClick} />,
+              <RemovePerson id={id} />,
+            ]}
+          >
+            <h2>
+              {firstName} {lastName}
+            </h2>
+            <CarsList personId={id} />
+          </Card>
+          <Divider />
+        </>
       )}
     </>
   );

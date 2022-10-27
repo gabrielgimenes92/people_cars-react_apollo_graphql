@@ -5,12 +5,17 @@ import { ADD_PERSON, GET_PEOPLE } from "../../queries";
 import { v4 as uuidv4 } from "uuid";
 
 const getStyles = () => ({
-  item: {
-    width: "120px",
-    marginRight: "150px",
+  form: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    maxWidth: "1200px",
+    justifyContent: "space-around",
+    marginTop: "10px",
+    marginBottom: "40px",
   },
   input: {
-    width: "150px",
+    minWidth: "150px",
   },
 });
 
@@ -57,16 +62,9 @@ const PersonForm = () => {
         layout="inline"
         onFinish={onFinish}
         size="large"
-        style={{
-          display: "flex",
-          flex: "row nowrap",
-          justifyContent: "center",
-          marginTop: "10px",
-          marginBottom: "40px",
-        }}
+        style={styles.form}
       >
         <Form.Item
-          style={styles.item}
           label="First Name"
           name="firstName"
           rules={[{ requred: true, message: "Please input your first name" }]}
@@ -74,14 +72,13 @@ const PersonForm = () => {
           <Input style={styles.input} placeholder="First name" />
         </Form.Item>
         <Form.Item
-          style={styles.item}
           label="Last Name"
           name="lastName"
           rules={[{ requred: true, message: "Please input your last name" }]}
         >
           <Input style={styles.input} placeholder="Last name" />
         </Form.Item>
-        <Form.Item style={styles.item} shouldUpdate={true}>
+        <Form.Item shouldUpdate={true}>
           {() => (
             <Button
               style={styles.input}

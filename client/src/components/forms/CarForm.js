@@ -5,12 +5,17 @@ import { ADD_CAR, GET_CARS, GET_PEOPLE } from "../../queries";
 import { v4 as uuidv4 } from "uuid";
 
 const getStyles = () => ({
-  item: {
-    width: "120px",
-    marginRight: "120px",
+  form: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    maxWidth: "1200px",
+    justifyContent: "space-around",
+    marginTop: "10px",
+    marginBottom: "40px",
   },
   input: {
-    width: "150px",
+    minWidth: "150px",
   },
 });
 
@@ -29,8 +34,6 @@ const CarForm = () => {
 
   const onFinish = (values) => {
     const { year, model, make, price, personId } = values;
-    console.log(values);
-    console.log("**************************");
 
     addCar({
       variables: {
@@ -63,20 +66,13 @@ const CarForm = () => {
     <>
       <h2 style={{ fontSize: "1.5rem" }}>Add Car Form</h2>
       <Form
-        style={{
-          display: "flex",
-          flex: "row nowrap",
-          justifyContent: "space-around",
-          marginTop: "10px",
-          marginBottom: "40px",
-        }}
+        style={styles.form}
         form={form}
         name="add-car-form"
         onFinish={onFinish}
         size="large"
       >
         <Form.Item
-          style={styles.item}
           label="Model year"
           name="year"
           rules={[
@@ -86,7 +82,6 @@ const CarForm = () => {
           <Input style={styles.input} placeholder="Year" />
         </Form.Item>
         <Form.Item
-          style={styles.item}
           label="Make"
           name="make"
           rules={[{ requred: true, message: "Please input the vehicle make" }]}
@@ -94,7 +89,6 @@ const CarForm = () => {
           <Input style={styles.input} placeholder="Make" />
         </Form.Item>
         <Form.Item
-          style={styles.item}
           label="Model"
           name="model"
           rules={[{ requred: true, message: "Please input the vehicle model" }]}
@@ -102,7 +96,6 @@ const CarForm = () => {
           <Input style={styles.input} placeholder="Model" />
         </Form.Item>
         <Form.Item
-          style={styles.item}
           label="Price"
           name="price"
           rules={[{ requred: true, message: "Please input the vehicle price" }]}
@@ -110,7 +103,6 @@ const CarForm = () => {
           <Input style={styles.input} placeholder="Price" />
         </Form.Item>
         <Form.Item
-          style={styles.item}
           label="Owner"
           name="personId"
           rules={[{ requred: true, message: "Please select the owner's ID" }]}
@@ -123,7 +115,7 @@ const CarForm = () => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item shouldUpdate={true} style={styles.item}>
+        <Form.Item shouldUpdate={true}>
           {() => (
             <Button
               style={{ width: "150px" }}

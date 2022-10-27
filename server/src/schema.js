@@ -144,6 +144,8 @@ const typeDefs = gql`
     ): Car
 
     removeCar(id: String!): Car
+
+    removeCarPerson(personId: String!): Car
   }
 `;
 

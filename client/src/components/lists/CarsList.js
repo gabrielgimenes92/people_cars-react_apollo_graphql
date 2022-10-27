@@ -1,6 +1,6 @@
 import { List } from "antd";
 import { useQuery } from "@apollo/client";
-import { GET_CARS, GET_CARS_BY_PERSONID } from "../../queries";
+import { GET_CARS_BY_PERSONID } from "../../queries";
 import CarCard from "../cards/CarCard";
 
 const CarsList = (props) => {
@@ -10,8 +10,6 @@ const CarsList = (props) => {
   });
   if (loading) return "loading...";
   if (error) return `Error ${error.message}`;
-
-  console.log(data);
 
   return (
     <List>
