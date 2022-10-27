@@ -93,7 +93,7 @@ const PersonForm = () => {
                   .length
               }
             >
-              Add Car
+              Add Person
             </Button>
           )}
         </Form.Item>

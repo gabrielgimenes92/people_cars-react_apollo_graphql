@@ -26,7 +26,7 @@ const cars_data = [
     make: "Toyota",
     model: "Corolla",
     price: "40000",
-    personId: "1",
+    personId: 1,
   },
   {
     id: "2",
@@ -34,7 +34,7 @@ const cars_data = [
     make: "Lexus",
     model: "LX 600",
     price: "13000",
-    personId: "1",
+    personId: 1,
   },
   {
     id: "3",
@@ -42,7 +42,7 @@ const cars_data = [
     make: "Honda",
     model: "Civic",
     price: "20000",
-    personId: "1",
+    personId: 1,
   },
   {
     id: "4",
@@ -50,7 +50,7 @@ const cars_data = [
     make: "Acura ",
     model: "MDX",
     price: "60000",
-    personId: "2",
+    personId: 2,
   },
   {
     id: "5",
@@ -58,7 +58,7 @@ const cars_data = [
     make: "Ford",
     model: "Focus",
     price: "35000",
-    personId: "2",
+    personId: 2,
   },
   {
     id: "6",
@@ -66,7 +66,7 @@ const cars_data = [
     make: "Honda",
     model: "Pilot",
     price: "45000",
-    personId: "2",
+    personId: 2,
   },
   {
     id: "7",
@@ -74,7 +74,7 @@ const cars_data = [
     make: "Volkswagen",
     model: "Golf",
     price: "40000",
-    personId: "3",
+    personId: 3,
   },
   {
     id: "8",
@@ -82,7 +82,7 @@ const cars_data = [
     make: "Kia",
     model: "Sorento",
     price: "45000",
-    personId: "3",
+    personId: 3,
   },
   {
     id: "9",
@@ -90,7 +90,7 @@ const cars_data = [
     make: "Volvo",
     model: "XC40",
     price: "55000",
-    personId: "3",
+    personId: 3,
   },
 ];
 
@@ -107,20 +107,21 @@ const typeDefs = gql`
     make: String
     model: String
     price: Float
-    personId: Int
+    personId: String
   }
 
   type Query {
     person(id: String!): Person
     people: [Person]
     car(id: String!): Car
+    carsByPerson(personId: String): [Car]
     cars: [Car]
   }
 
   type Mutation {
     addPerson(id: String!, firstName: String!, lastName: String!): Person
 
-    updatePerson(id: String!, firstName: String, lastname: String): Person
+    updatePerson(id: String!, firstName: String, lastName: String): Person
 
     removePerson(id: String!): Person
 
@@ -130,7 +131,7 @@ const typeDefs = gql`
       make: String
       model: String
       price: Float
-      personId: Int
+      personId: String
     ): Car
 
     updateCar(
@@ -139,7 +140,7 @@ const typeDefs = gql`
       make: String
       model: String
       price: Float
-      personId: Int
+      personId: String
     ): Car
 
     removeCar(id: String!): Car
@@ -155,6 +156,10 @@ const resolvers = {
     cars: () => cars_data,
     car: (parent, args, context, info) => {
       return find(cars_data, { id: args.id });
+    },
+    carsByPerson: (parent, args, context, info) => {
+      const { personId } = args;
+      return cars_data.filter((p) => p.personId == personId);
     },
   },
 

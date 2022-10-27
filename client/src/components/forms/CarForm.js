@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { Form, Input, Button, Select } from "antd";
 import { useState, useEffect } from "react";
-import { ADD_CAR, GET_PEOPLE } from "../../queries";
+import { ADD_CAR, GET_CARS, GET_PEOPLE } from "../../queries";
 import { v4 as uuidv4 } from "uuid";
 
 const getStyles = () => ({
@@ -28,7 +28,28 @@ const CarForm = () => {
   }, []);
 
   const onFinish = (values) => {
-    const { firstName, lastName } = values;
+    const { year, model, make, price, personId } = values;
+
+    addCar({
+      variables: {
+        id,
+        year,
+        model,
+        make,
+        price,
+        personId,
+      },
+      update: (cache, { data: { addCar } }) => {
+        const data = cache.readQuery({ query: GET_CARS });
+        cache.writeQuery({
+          query: GET_CARS,
+          data: {
+            ...ADD_CAR,
+            cars: [...data.cars, addCar],
+          },
+        });
+      },
+    });
   };
 
   const { loading, error, data } = useQuery(GET_PEOPLE);

@@ -24,7 +24,6 @@ const App = () => {
 
         <div className="lists">
           <PeopleList />
-          <CarsList />
         </div>
       </div>
     </ApolloProvider>
