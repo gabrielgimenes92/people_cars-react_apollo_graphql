@@ -23,7 +23,6 @@ const CarForm = () => {
   const styles = getStyles();
   const [id] = useState(uuidv4());
   const [addCar] = useMutation(ADD_CAR);
-  const [listOwners, setListOwners] = useState();
 
   const [form] = Form.useForm();
   const [, forceUpdate] = useState();
